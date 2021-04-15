@@ -83,8 +83,8 @@ public class Driver {
 
     private void invokeSQLiTestCases() {
         // SQL Injection test
-		System.out.println("run SQLi test");
-		driver.get(url + "/start.mvc#lesson/SqlInjection.lesson/10");
+        System.out.println("run SQLi test");
+        driver.get(url + "/start.mvc#lesson/SqlInjection.lesson/10");
         driver.manage().timeouts().implicitlyWait(DefaultTimeoutInSeconds, TimeUnit.SECONDS);
 
 
