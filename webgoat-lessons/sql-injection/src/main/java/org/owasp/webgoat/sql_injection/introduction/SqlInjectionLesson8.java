@@ -53,9 +53,15 @@ public class SqlInjectionLesson8 extends AssignmentEndpoint {
             Connection connection = DatabaseUtilities.getConnection(getWebSession());
 
             try {
-                Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                //Fixed
+                PreparedStatement statement = connection.prepareStatement("SELECT * FROM employees WHERE last_name = ? AND auth_tan = ?");
+                statement.setString(1, name);
+                statement.setString(2, auth_tan);
+                ResultSet results = statement.executeQuery();
+
+                //Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 log(connection, query);
-                ResultSet results = statement.executeQuery(query);
+                //ResultSet results = statement.executeQuery(query);
 
                 if (results.getStatement() != null) {
                     if (results.first()) {
