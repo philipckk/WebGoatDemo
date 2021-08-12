@@ -1,0 +1,46 @@
+version: "1"
+project:
+  name: chanp\webgoat
+  branch: main
+  revision:
+    name: ${scm.git.commit}
+    date: ${scm.git.commit.date}
+capture:
+  #coverity:
+  #  autoCapture: enable 
+  build:
+    cleanCommands:
+    - shell: [mvn_test, -B, -f, pom.xml, clean]
+    buildCommands:
+    - shell: [mvn_test, -B, -f, pom.xml, install]
+  fileSystem:
+    ears:
+      extensions: [ear]
+      files:
+      - directory: ${project.projectDir}
+    java:
+      files:
+      - directory: ${project.projectDir}
+    javascript:
+      files:
+      - directory: ${project.projectDir}
+      - excludeRegex: node_modules|bower_components|vendor
+    php:
+      files:
+      - directory: ${project.projectDir}
+    python:
+      files:
+      - directory: ${project.projectDir}
+    ruby:
+      files:
+      - directory: ${project.projectDir}
+    wars:
+      extensions: [war]
+      files:
+      - directory: ${project.projectDir}
+analyze:
+  mode: central
+install:
+  coverity:
+    version: 2021.04
+serverUrl: https://sipse.polaris.synopsys.com
