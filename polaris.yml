@@ -10,9 +10,9 @@ capture:
   #  autoCapture: enable 
   build:
     cleanCommands:
-    - shell: [mvn_test, -B, -f, pom.xml, clean]
+    - shell: [mvn, -B, -f, pom.xml, clean]
     buildCommands:
-    - shell: [mvn_test, -B, -f, pom.xml, install]
+    - shell: [mvn, -B, -f, pom.xml, install]
   fileSystem:
     ears:
       extensions: [ear]
